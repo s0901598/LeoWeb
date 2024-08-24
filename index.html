@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/timeline.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/timeline.js"></script>
+</head>
+
+<body>
+    <section class="navbar">
+        <div class="home_item hidden md:flex w-4/5 mx-auto flex justify-evenly">
+            <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">首頁</div>
+            <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">前後端架構</div>
+            <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">課程介紹</div>
+            <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">聯繫我們</div>
+        </div>
+    </section>
+    <section class="timeline">
+        <div class="timeline-container">
+            <div class="timeline" id="timeline">
+
+            </div>
+            <button class="nav-button prev" onclick="changePage(-1)" [disabled]="true">&lt;</button>
+            <button class="nav-button next" onclick="changePage(1)" [disabled]="true">&gt;</button>
+        </div>
+
+    </section>
+
+
+
+</body>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        InitTimeline();
+    });
+
+</script>
+
+</html>
