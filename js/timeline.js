@@ -10,9 +10,16 @@ let timeLineDatas = [
     { date: "未來規劃", title: "AI 研究", description: "計劃深入人工智能領域，專注於機器學習和自然語言處理研究。" },
     { date: "長期目標", title: "創業", description: "希望在積累足夠經驗後，自主創業開發創新型科技產品。" }
 ]
+
+
+currentPage = 0;
+itemsPerPage = 4;
 function InitTimeline(){
-    for(let i=0;i<timeLineDatas.length;i++) {
-        let item = timeLineDatas[i];
+    let datas = paginatedData();
+    console.log(datas);
+    document.getElementById('timeline').innerHTML= ''
+    for(let i=0;i< datas.length;i++) {
+        let item = datas[i];
         let oddOreven =  i % 2 !== 0 ? 'odd' : 'even';
         document.getElementById('timeline').insertAdjacentHTML('beforeEnd',`
              <div class="timeline-item ${oddOreven}">
@@ -24,9 +31,28 @@ function InitTimeline(){
                     </div>
             `);
     }
-   
+    canGoBack();
+    canGoForward()
+}
+
+
+function paginatedData() {
+    const start = currentPage * itemsPerPage;
+    return timeLineDatas.slice(start, start + itemsPerPage);
+}
+
+function canGoBack() {
+    let status = currentPage > 0;
+    document.getElementById('prevbtn').disabled = !status;
+}
+
+function canGoForward() {
+    let status = (currentPage + 1) * itemsPerPage < timeLineDatas.length;
+    document.getElementById('nextbtn').disabled = !status;
 }
 
 function changePage(number) {
+    currentPage += number;
+    InitTimeline();
 
 }

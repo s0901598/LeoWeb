@@ -5,27 +5,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/timeline.css">
+    <link rel="stylesheet" href="./css/programcards.css">
+    <link rel="stylesheet" href="./css/skillcards.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/timeline.js"></script>
 </head>
 
 <body>
     <section class="navbar">
-        <div class="home_item hidden md:flex w-4/5 mx-auto flex justify-evenly">
+        <div class="home_item fixed hidden md:flex w-full mx-auto flex justify-evenly">
             <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">首頁</div>
             <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">前後端架構</div>
             <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">課程介紹</div>
             <div class=" hover:text-amber-500 w-1/4 text-center py-4 cursor-pointer duration-150">聯繫我們</div>
         </div>
     </section>
-    <section class="timeline">
+    <section style="padding-top:50px;padding-bottom: 50px;">
         <div class="timeline-container">
             <div class="timeline" id="timeline">
-
             </div>
-            <button class="nav-button prev" onclick="changePage(-1)" [disabled]="true">&lt;</button>
-            <button class="nav-button next" onclick="changePage(1)" [disabled]="true">&gt;</button>
+            <button class="nav-button prev" onclick="changePage(-1)" id="prevbtn">&lt;</button>
+            <button class="nav-button next" onclick="changePage(1)" id="nextbtn">&gt;</button>
+        </div>
+    </section>
+    <section class="program" style="padding-top:50px;padding-bottom: 50px;">
+        <div class="container-program">
+            <div class="cards flex justify-around">
+                <div class="card blue">
+                    <div class="card-header img ">
+                        <img src="./assets/analytics.png" alt="後端技術" class="card-icon">
+                        <h2 class="card-title">後端技術開發</h2>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">後端開發是網頁和應用程式的核心，負責處理伺服器端的邏輯、數據庫互動及API的設計與實現。</p>
+                        <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+                <div class="card green">
+                    <div class="card-header img ">
+                        <img src="./assets/alert.png" alt="前端技術" class="card-icon">
+                        <h2 class="card-title">前端技術開發</h2>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">前端開發專注於用戶界面和體驗，使用HTML、CSS和JavaScript創建互動性強、視覺吸引人的網頁。</p>
+                        <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+                <div class="card purple">
+                    <div class="card-header img ">
+                        <img src="./assets/design-software.png" alt="網頁技術" class="card-icon">
+                        <h2 class="card-title">網頁技術開發</h2>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">網頁技術開發包括前後端結合，構建完整的網站和Web應用，涵蓋從設計到部署的全過程。</p>
+                        <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+                <div class="card orange">
+                    <div class="card-header img ">
+                        <img src="./assets/responsive.png" alt="資料庫技術" class="card-icon">
+                        <h2 class="card-title">資料庫開發</h2>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">資料庫開發專注於設計、實施及管理數據庫系統，確保數據的結構化存儲、快速檢索及安全性。</p>
+                        <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="skillCard " style="padding-top:50px;padding-bottom: 50px;">
+        <div class="card-container">
+            <div class="pocker p-3">
+                <div class="item">
+                    <div class="font">
+                        <h3 class="title">後端技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/backend.png" alt="Database Icon">
+                        </div>
+                        <p class="content">容器化與虛擬化技術-Docker</p>
+                        <p class="point">>維護簡單</p>
+                    </div>
+                    <div class="back">
+                        <h3 class="title">後端技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/backend.png" alt="Database Icon">
+                        </div>
+                        <p class="content">容器化與虛擬化技術-Docker</p>
+                        <p class="point">>維護簡單</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pocker p-3">
+                <div class="item">
+                    <div class="font">
+                        <h3 class="title">前端技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/design-software.png" alt="Frontend Icon">
+                        </div>
+                        <p class="content">響應式網頁設計</p>
+                        <p class="point">>用戶體驗優化</p>
+                    </div>
+                    <div class="back">
+                        <h3 class="title">前端技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/design-software.png" alt="Frontend Icon">
+                        </div>
+                        <p class="content">響應式網頁設計</p>
+                        <p class="point">>用戶體驗優化</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pocker p-3">
+                <div class="item">
+                    <div class="font">
+                        <h3 class="title">網頁技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/web.png" alt="Web Tech Icon">
+                        </div>
+                        <p class="content">RESTful API 設計</p>
+                        <p class="point">>高效數據交換</p>
+                    </div>
+                    <div class="back">
+                        <h3 class="title">網頁技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/web.png" alt="Web Tech Icon">
+                        </div>
+                        <p class="content">RESTful API 設計</p>
+                        <p class="point">>高效數據交換</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pocker p-3">
+                <div class="item">
+                    <div class="font">
+                        <h3 class="title">資料技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/database.png" alt="Data Tech Icon">
+                        </div>
+                        <p class="content">大數據分析</p>
+                        <p class="point">>洞察商業價值</p>
+                    </div>
+                    <div class="back">
+                        <h3 class="title">資料技術</h3>
+                        <div class="level"></div>
+                        <div class="skillpic">
+                            <img src="./assets/database.png" alt="Data Tech Icon">
+                        </div>
+                        <p class="content">大數據分析</p>
+                        <p class="point">>洞察商業價值</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
