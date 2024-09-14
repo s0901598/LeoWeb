@@ -163,3 +163,13 @@
     --n: 4;
   }
   
+
+  @media (max-width:768px) {
+ .cards{ 
+  display: flex;
+  flex-direction: colums;
+  align-items: center;
+ }
+   
+    
+  }

@@ -223,6 +223,7 @@
 
 </body>
 <script>
+    const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
 
     document.addEventListener("DOMContentLoaded", function () {
         const btn = document.querySelector("button.mobile-menu-button");
@@ -232,10 +233,28 @@
         btn.addEventListener("click", () => {
             menu.classList.toggle("hidden");
         });
-
-        InitTimeline();
+        console.log('AAA')
     });
+    function handleDeviceChange(e) {
+        if (e.matches) {
+            console.log('現在是移動設備');
+            // 在這裡添加切換到移動設備時要執行的代碼
+            InitTimeline('mobile');
+        } else {
+            console.log('現在是桌面設備');
+            // 在這裡添加切換到桌面設備時要執行的代碼
+            InitTimeline('desktop');
+        }
+    }
+
+    // 初始檢查
+    handleDeviceChange(mobileMediaQuery);
+
+    // 添加監聽器
+    mobileMediaQuery.addListener(handleDeviceChange);
+
 
 </script>
+
 
 </html>

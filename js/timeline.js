@@ -14,23 +14,52 @@ let timeLineDatas = [
 
 currentPage = 0;
 itemsPerPage = 4;
-function InitTimeline(){
-    let datas = paginatedData();
-    console.log(datas);
-    document.getElementById('timeline').innerHTML= ''
-    for(let i=0;i< datas.length;i++) {
-        let item = datas[i];
-        let oddOreven =  i % 2 !== 0 ? 'odd' : 'even';
-        document.getElementById('timeline').insertAdjacentHTML('beforeEnd',`
-             <div class="timeline-item ${oddOreven}">
-                        <div class="timeline-content">
-                            <div class="timeline-date">${item.date}</div>
-                            <div class="timeline-title">${item.title}</div>
-                            <div class="timeline-description">${item.description}</div>
+deviceType = ''
+let datas = [];
+function InitTimeline(type){
+    deviceType = type;
+    currentPage = 0;
+    itemsPerPage =  type == 'desktop' ? 4: 1;
+    datas = paginatedData();
+    ShowTimeLine(datas);
+}
+
+function ShowTimeLine(datas){
+    if(deviceType == 'desktop') {
+        document.getElementById('timeline').innerHTML= ''
+        for(let i=0;i< datas.length;i++) {
+            let item = datas[i];
+            let oddOreven =  i % 2 !== 0 ? 'odd' : 'even';
+            document.getElementById('timeline').insertAdjacentHTML('beforeEnd',`
+                 <div class="timeline-item ${oddOreven}">
+                            <div class="timeline-content">
+                                <div class="timeline-date">${item.date}</div>
+                                <div class="timeline-title">${item.title}</div>
+                                <div class="timeline-description">${item.description}</div>
+                            </div>
                         </div>
-                    </div>
-            `);
+                `);
+        }
+        document.getElementById('timeline').style.setProperty('--pseudo-position', 'absolute');
+    } else {        
+        document.getElementById('timeline').innerHTML= ''
+     
+            let item = datas[0];
+            document.getElementById('timeline').insertAdjacentHTML('beforeEnd',`
+                 <div class="timeline-item" style="margin: 0 20px;flex:auto">
+                            <div class="timeline-content">
+                                <div class="timeline-date">${item.date}</div>
+                                <div class="timeline-title">${item.title}</div>
+                                <div class="timeline-description">${item.description}</div>
+                            </div>
+                        </div>
+                `);
+            document.getElementById('timeline').style.setProperty('--pseudo-position', 'relative');
+    
+        
+       
     }
+   
     canGoBack();
     canGoForward()
 }
@@ -53,6 +82,7 @@ function canGoForward() {
 
 function changePage(number) {
     currentPage += number;
-    InitTimeline();
+    datas = paginatedData();
+    ShowTimeLine(datas);
 
 }
