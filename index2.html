@@ -164,45 +164,71 @@
         </svg>
     </div>
     <script>
-        const elements = ['user', 'chrome', 'dns', 'chrome', 'cloudfare', 'cdn', 'cloudfront', 'nginx', 'server1', 'server2', 'server3']
-        const lines = ['user-line-chrome', 'chrome-line-dns', 'dns-line-chrome', 'chrome-line-cloudfare', 'cloudfare-line-cdn', 'cdn-line-cloudfront', 'cloudfare-line-nginx', 'nginx-line-server1', 'nginx-line-server2', 'nginx-line-server3']
-        let currentstep = 0;
-        gsap.set([...elements.map(id => `#${id}`)], [...elements.map(id => `#${id}  text`)], [...lines.map(id => `#${id}`)], { opacity: 0 });
-        // gsap.set(elements.map(id => `#${id}`), { opacity: 0 });
-        //gsap.set(lines.map(id => `#${id}`), { opacity: 0 });
-        currentstep = 0
-        playNextStep()
-        async function playNextStep() {
-            if (currentstep < elements.length) {
-                const element = `#${elements[currentstep]}`;
-                const textelement = `${element} text`;
+        const steps = [
+            'user',
+            'user-line-chrome',
+            'chrome',
+            'chrome-line-dns',
+            'dns',
+            'dns-line-chrome',
+            'chrome',
+            'chrome-line-cloudfare',
+            'cloudfare',
+            'cloudfare-line-cdn',
+            'cdn',
+            'cdn-line-cloudfront',
+            'cloudfront',
+            'cloudfare-line-nginx',
+            'nginx',
+            'nginx-line-server1',
+            'server1',
+            'nginx-line-server2',
+            'server2',
+            'nginx-line-server3',
+            'server3'
+        ];
 
-                //顯示色塊和文字
-                await gsap.to([element, textelement], { opacity: 1, duration: 0.3, ease: 'power2.inOut' });
-            }
-            //如果不是最後一條線，就顯示連接線
-            if (currentstep < elements.length - 1) {
-                await animateLine(lines[currentstep]);
-            }
-            currentstep++;
-            if (currentstep < elements.length) {
-                setTimeout(playNextStep, 100);
+        let currentstep = 0;
+
+        // 初始化所有元素和线条的透明度为0
+        gsap.set(steps.map(id => `#${id}`), { opacity: 0 });
+
+        playNextStep();
+
+        function isLine(id) {
+            return id.includes('-line-');
+        }
+
+        async function playNextStep() {
+            if (currentstep < steps.length) {
+                const id = steps[currentstep];
+                if (isLine(id)) {
+                    await animateLine(id);
+                } else {
+                    const element = `#${id}`;
+                    const textelement = `${element} text`;
+                    // 显示色块和文字
+                    await gsap.to([element, textelement], { opacity: 1, duration: 0.3, ease: 'power2.inOut' });
+                }
+                currentstep++;
+                if (currentstep < steps.length) {
+                    setTimeout(playNextStep, 100);
+                }
             }
         }
 
         function animateLine(lineid) {
-            return new Promise((reslove) => {
-                console.log(lineid)
+            return new Promise((resolve) => {
                 const line = document.querySelector(`#${lineid}`);
                 const length = line.getTotalLength();
-                gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 1 })
+                gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 1 });
                 gsap.to(line, {
-                    strokeDashoffset: 0, duration: 1, ease: "power2.inOut", onComplete: reslove
+                    strokeDashoffset: 0,
+                    duration: 1,
+                    ease: "power2.inOut",
+                    onComplete: resolve
                 });
-
             });
-
-
         }
     </script>
 </body>
