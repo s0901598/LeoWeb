@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <svg viewBox="0 0 1600 800" xmlns="http://www.w3.org/2000/svg">
+            <g xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(0, 300)">
+                    <g id="user" opacity="0">
+                        <g>
+                            <rect x="0" y="150" width="110" height="60" rx="9" ry="9" fill="#dae8fc" stroke="#6c8ebf"
+                                pointer-events="all" />
+                        </g>
+                        <g>
+                            <g transform="translate(-0.5 -0.5)">
+                                <switch>
+                                    <foreignObject pointer-events="none" width="100%" height="100%"
+                                        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+                                        style="overflow: visible; text-align: left;">
+                                        <div xmlns="http://www.w3.org/1999/xhtml"
+                                            style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 108px; height: 1px; padding-top: 180px; margin-left: 1px;">
+                                            <div data-drawio-colors="color: rgb(0, 0, 0); "
+                                                style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                                                <text
+                                                    style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                                    User</text>
+                                            </div>
+                                        </div>
+                                    </foreignObject>
+                                    <image x="1" y="173.5" width="108" height="17"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="data:image/png;base64,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" />
+                                </switch>
+                            </g>
+                        </g>
+                    </g>
+                    <path id="user-line-chrome" opacity="0"
+                        d="M 110 180 L 193.63 180 M 198.88 180 L 191.88 183.5 L 193.63 180 L 191.88 176.5 Z" fill="fill"
+                        stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all" />
+                    <g id="chrome" opacity="0">
+                        <g>
+                            <ellipse cx="240" cy="180" rx="40" ry="40" fill="#d5e8d4" stroke="#82b366"
+                                pointer-events="all" />
+                        </g>
+                        <g>
+                            <g transform="translate(-0.5 -0.5)">
+                                <foreignObject width="100%" height="100%" style="overflow: visible; text-align: left;">
+                                    <div
+                                        style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 180px; margin-left: 201px;">
+                                        <div data-drawio-colors="color: rgb(0, 0, 0); "
+                                            style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <text
+                                                style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                                Chrome</text>
+                                        </div>
+                                    </div>
+                                </foreignObject>
+
+                            </g>
+                        </g>
+                    </g>
+                    <path id="chrome-line-dns" opacity="0"
+                        d="M 232 86.37 L 232 140 M 232 81.12 L 235.5 88.12 L 232 86.37 L 228.5 88.12 Z" fill="fill"
+                        stroke="rgb(0, 0, 0)" stroke-miterlimit="10" />
+
+                    <g id="dns" opacity="0">
+                        <rect x="190" y="19" width="100" height="60" fill="#ffe6cc" />
+                        <text x="238" y="53" text-anchor="middle" fill="black" opacity="0">DNS</text>
+                    </g>
+                    <path id="dns-line-chrome" opacity="0"
+                        d="M 251 134.9 L 251 80 M 251 140.15 L 247.5 133.15 L 251 134.9 L 254.5 133.15 Z" fill="fill"
+                        stroke="rgb(0, 0, 0)" stroke-miterlimit="10" />
+
+                    <path id="chrome-line-cloudfare" opacity="0" d="M 280 180 L 343.63 180 
+           M 348.88 180 L 341.88 183.5 L 343.63 180 L 341.88 176.5 Z" fill="fill" stroke="rgb(0, 0, 0)"
+                        stroke-miterlimit="10" />
+                    <g id="cloudfare" opacity="0">
+                        <g>
+                            <rect x="350" y="150" width="120" height="60" rx="9" ry="9" fill="#fff2cc" stroke="#d6b656"
+                                pointer-events="all" />
+                        </g>
+                        <g>
+                            <g transform="translate(-0.5 -0.5)">
+                                <switch>
+                                    <foreignObject pointer-events="none" width="100%" height="100%"
+                                        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+                                        style="overflow: visible; text-align: left;">
+                                        <div xmlns="http://www.w3.org/1999/xhtml"
+                                            style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 180px; margin-left: 351px;">
+                                            <div data-drawio-colors="color: rgb(0, 0, 0); "
+                                                style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                                                <text
+                                                    style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                                    Cloud Fare</text>
+                                            </div>
+                                        </div>
+                                    </foreignObject>
+                                    <image x="351" y="173.5" width="118" height="17"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="data:image/png;base64,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" />
+                                </switch>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="cdn" opacity="0">
+                        <rect x="890" y="-120" width="100" height="60" fill="#F8CECC" />
+                        <text x="938" y="-85" text-anchor="middle" fill="black" opacity="0">CDN</text>
+                    </g>
+                    <g transform="translate(0,-118)">
+                        <path id="cloudfare-line-cdn" opacity="0" d="M 410 265 L 410 30 L 883.63 30 
+           M 888.88 30 L 881.88 33.5 L 883.63 30 L 881.88 26.5 Z" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-miterlimit="10" />
+                    </g>
+                    <g transform="translate(11,-118)">
+                        <path id="cdn-line-cloudfront" opacity="0" d="M 980 30 L 1333.63 30 
+           M 1338.88 30 L 1331.88 33.5 L 1333.63 30 L 1331.88 26.5 Z" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-miterlimit="10" />
+                    </g>
+                    <g id="cloudfront" opacity="0">
+                        <rect x="1351" y="-120" width="100" height="60" fill="#EA6181" />
+                        <text x="1401" y="-85" text-anchor="middle" color="#692B3A" opacity="1">CloudFront</text>
+                    </g>
+                    <path id="cloudfare-line-nginx" opacity="0" d="M 470 180 L 533.63 180 
+                M 538.88 180 L 531.88 183.5 L 533.63 180 L 531.88 176.5 Z" fill="fill" stroke="rgb(0, 0, 0)"
+                        stroke-miterlimit="10" />
+                    <!-- Nginx -->
+                    <g id="nginx" opacity="0">
+                        <rect x="539" y="150" width="100" height="60" fill="#009639" />
+                        <text x="590" y="185" text-anchor="middle" fill="white" opacity="0">Nginx</text>
+                    </g>
+                    <g transform="translate(490, 0)">
+                        <!-- Server 1 -->
+                        <g id="server1" opacity="0">
+                            <rect x="300" y="50" width="100" height="60" fill="#4a90e2" />
+                            <text x="350" y="85" text-anchor="middle" fill="white" opacity="0">Server 1</text>
+                        </g>
+                        <!-- Server 2 -->
+                        <g id="server2" opacity="0">
+                            <rect x="300" y="150" width="100" height="60" fill="#4a90e2" />
+                            <text x="350" y="185" text-anchor="middle" fill="white" opacity="0">Server 2</text>
+                        </g>
+                        <!-- Server 3 -->
+                        <g id="server3" opacity="0">
+                            <rect x="300" y="250" width="100" height="60" fill="#4a90e2" />
+                            <text x="350" y="285" text-anchor="middle" fill="white" opacity="0">Server 3</text>
+                        </g>
+                        <!-- 连接线 -->
+                        <path id="nginx-line-server1" d="M150 180 L225 180 L225 80 L300 80" stroke="#4a90e2"
+                            stroke-width="2" fill="none" opacity="0" />
+                        <path id="nginx-line-server2" d="M150 180 L300 180" stroke="#4a90e2" stroke-width="2"
+                            fill="none" opacity="0" />
+                        <path id="nginx-line-server3" d="M150 180 L225 180 L225 280 L300 280" stroke="#4a90e2"
+                            stroke-width="2" fill="none" opacity="0" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <script>
+        const elements = ['user', 'chrome', 'dns', 'chrome', 'cloudfare', 'cdn', 'cloudfront', 'nginx', 'server1', 'server2', 'server3']
+        const lines = ['user-line-chrome', 'chrome-line-dns', 'dns-line-chrome', 'chrome-line-cloudfare', 'cloudfare-line-cdn', 'cdn-line-cloudfront', 'cloudfare-line-nginx', 'nginx-line-server1', 'nginx-line-server2', 'nginx-line-server3']
+        let currentstep = 0;
+        gsap.set([...elements.map(id => `#${id}`)], [...elements.map(id => `#${id}  text`)], [...lines.map(id => `#${id}`)], { opacity: 0 });
+        // gsap.set(elements.map(id => `#${id}`), { opacity: 0 });
+        //gsap.set(lines.map(id => `#${id}`), { opacity: 0 });
+        currentstep = 0
+        playNextStep()
+        async function playNextStep() {
+            if (currentstep < elements.length) {
+                const element = `#${elements[currentstep]}`;
+                const textelement = `${element} text`;
+
+                //顯示色塊和文字
+                await gsap.to([element, textelement], { opacity: 1, duration: 0.3, ease: 'power2.inOut' });
+            }
+            //如果不是最後一條線，就顯示連接線
+            if (currentstep < elements.length - 1) {
+                await animateLine(lines[currentstep]);
+            }
+            currentstep++;
+            if (currentstep < elements.length) {
+                setTimeout(playNextStep, 100);
+            }
+        }
+
+        function animateLine(lineid) {
+            return new Promise((reslove) => {
+                console.log(lineid)
+                const line = document.querySelector(`#${lineid}`);
+                const length = line.getTotalLength();
+                gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 1 })
+                gsap.to(line, {
+                    strokeDashoffset: 0, duration: 1, ease: "power2.inOut", onComplete: reslove
+                });
+
+            });
+
+
+        }
+    </script>
+</body>
+
+</html>

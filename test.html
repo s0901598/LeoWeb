@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx 负载均衡动画</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Nginx -->
+            <rect id="nginx" x="50" y="150" width="100" height="60" fill="#009639" opacity="0" />
+            <text x="100" y="185" text-anchor="middle" fill="white" opacity="0">Nginx</text>
+
+            <!-- Server 1 -->
+            <rect id="server1" x="300" y="50" width="100" height="60" fill="#4a90e2" opacity="0" />
+            <text x="350" y="85" text-anchor="middle" fill="white" opacity="0">Server 1</text>
+
+            <!-- Server 2 -->
+            <rect id="server2" x="300" y="150" width="100" height="60" fill="#4a90e2" opacity="0" />
+            <text x="350" y="185" text-anchor="middle" fill="white" opacity="0">Server 2</text>
+
+            <!-- Server 3 -->
+            <rect id="server3" x="300" y="250" width="100" height="60" fill="#4a90e2" opacity="0" />
+            <text x="350" y="285" text-anchor="middle" fill="white" opacity="0">Server 3</text>
+
+            <!-- 连接线 -->
+            <path id="line1" d="M150 180 L225 180 L225 80 L300 80" stroke="#979797" stroke-width="2" fill="none"
+                opacity="0" />
+            <path id="line2" d="M150 180 L300 180" stroke="#979797" stroke-width="2" fill="none" opacity="0" />
+            <path id="line3" d="M150 180 L225 180 L225 280 L300 280" stroke="#979797" stroke-width="2" fill="none"
+                opacity="0" />
+        </svg>
+        <button id="playAnimation">播放动画</button>
+        <button id="resetAnimation">重置动画</button>
+    </div>
+
+    <script>
+        const elements = ['nginx', 'server1', 'server2', 'server3'];
+        const lines = ['line1', 'line2', 'line3'];
+        let currentStep = 0;
+
+        gsap.set([...elements.map(id => `#${id}`), ...elements.map(id => `#${id} + text`), ...lines.map(id => `#${id}`)], { opacity: 0 });//將所有的色塊、文字的opacity設置成0
+
+        function animateLine(lineId) {
+            return new Promise((resolve) => {//回傳一個非同步
+                const line = document.getElementById(lineId);
+                const length = line.getTotalLength();
+                gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 1 });//這行程式碼的作用是將線條隱藏，並準備好後續的動畫效果。
+                //strokeDasharray: length: 設定線條的虛線模式。
+                //strokeDasharray 設定為線條的總長度，會讓整個線條看起來像一段完整的虛線。
+                //strokeDashoffset: length: 將虛線偏移設置為整個線條的長度，這樣一來，線條會完全從視圖中隱藏（在動畫開始前，線條是不可見的）。
+                //opacity: 1: 設置線條的透明度為 1（完全不透明）
+                gsap.to(line, {//gsap.to 是 GSAP 的動畫方法，用來將元素從當前狀態動態變化到你指定的最終狀態。
+                    strokeDashoffset: 0,//strokeDashoffset: 0: 將 strokeDashoffset 設置為 0，這會讓線條逐漸從左到右顯示出來，像是“畫”出線條一樣。
+                    duration: 1,
+                    ease: "power1.inOut",
+                    onComplete: resolve
+                });
+            });
+        }
+
+        async function playNextStep() {
+            if (currentStep < elements.length) {
+                const element = `#${elements[currentStep]}`;
+                const textElement = `${element} + text`;
+
+                // 显示色块和文字
+                await gsap.to([element, textElement], { opacity: 1, duration: 0.5, ease: 'power2.inOut' });//await代表要做完這行 才能執行下一個步驟
+
+                // 如果不是最后一个元素，则显示连接线
+                if (currentStep < elements.length - 1) {
+                    await animateLine(lines[currentStep]);//await代表要執行完animateLine這個function才能做下一個步驟
+                }
+
+                currentStep++;
+                if (currentStep < elements.length) {
+                    setTimeout(playNextStep, 500);
+                }
+            }
+        }
+
+        document.getElementById('playAnimation').addEventListener('click', () => {
+            gsap.set([...elements.map(id => `#${id}`), ...elements.map(id => `#${id} + text`), ...lines.map(id => `#${id}`)], { opacity: 0 });
+            currentStep = 0;
+            playNextStep();
+        });
+
+        document.getElementById('resetAnimation').addEventListener('click', () => {
+            gsap.to([...elements.map(id => `#${id}`), ...elements.map(id => `#${id} + text`), ...lines.map(id => `#${id}`)], { opacity: 0, duration: 0.5 });
+            currentStep = 0;
+        });
+    </script>
+</body>
+
+</html>
