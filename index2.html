@@ -152,12 +152,20 @@
                             <text x="350" y="285" text-anchor="middle" fill="white" opacity="0">Server 3</text>
                         </g>
                         <!-- 连接线 -->
-                        <path id="nginx-line-server1" d="M150 180 L225 180 L225 80 L300 80" stroke="#4a90e2"
-                            stroke-width="2" fill="none" opacity="0" />
-                        <path id="nginx-line-server2" d="M150 180 L300 180" stroke="#4a90e2" stroke-width="2"
-                            fill="none" opacity="0" />
-                        <path id="nginx-line-server3" d="M150 180 L225 180 L225 280 L300 280" stroke="#4a90e2"
-                            stroke-width="2" fill="none" opacity="0" />
+                        <g transform="translate(-510,-110)">
+                            <path id="nginx-line-server1" d="M 660 265 L 802.27 197.85" fill="black" stroke="#3399ff"
+                                stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="all" />
+                            <path id="nginx-line-server2" d="M 660 285 L 801.76 285" fill="#3399ff" stroke="#3399ff"
+                                stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="all" />
+                            <path id="nginx-line-server3" d="M 660 315 L 802.27 382.15" fill="none" stroke="#3399ff"
+                                stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6"
+                                pointer-events="stroke" />
+                        </g>
+
+
+
+
+
                     </g>
                 </g>
             </g>
@@ -186,8 +194,9 @@
             'server2',
             'nginx-line-server3',
             'server3'
-        ];
 
+        ];
+        dashlines = ['nginx-line-server1', 'nginx-line-server2', 'nginx-line-server3']
         let currentstep = 0;
 
         // 初始化所有元素和线条的透明度为0
@@ -220,7 +229,7 @@
         function animateLine(lineid) {
             return new Promise((resolve) => {
                 const line = document.querySelector(`#${lineid}`);
-                const length = line.getTotalLength();
+                const length = !dashlines.includes(lineid) ? line.getTotalLength() : 5.5;
                 gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 1 });
                 gsap.to(line, {
                     strokeDashoffset: 0,
