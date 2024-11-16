@@ -1,64 +1,128 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVG Path 操控模板</title>
+    <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
+        .card-container {
             display: flex;
-            justify-content: space-between;
-        }
-
-        .svg-container {
-            width: 70%;
-        }
-
-        .controls {
-            width: 25%;
-        }
-
-        textarea {
+            align-items: center;
+            overflow: hidden;
+            position: relative;
             width: 100%;
-            height: 150px;
+            max-width: 800px;
+            /* 調整為適合你的寬度 */
+            margin: auto;
         }
 
-        svg {
-            border: 1px solid #ccc;
+        .card-wrapper {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 16px;
+            /* 卡片之間的間距 */
+        }
+
+        .card {
+            flex: 0 0 200px;
+            /* 每張卡片的寬度 */
+            height: 150px;
+            /* 卡片的高度 */
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .arrow {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 0;
+        }
+
+        .arrow.right {
+            right: 0;
+        }
+
+        .arrow:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="svg-container">
-            <svg id="mySVG" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="300">
-                <!-- 路徑將在這裡被更新 -->
-                <path id="myPath" d="M50 50 L150 50 L150 150 L50 150 Z" stroke="#4a90e2" stroke-width="3" fill="none" />
-            </svg>
+    <div class="card-container">
+        <button class="arrow left">←</button>
+        <div class="card-wrapper">
+            <div class="card">Card 1</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+            <div class="card">Card 4</div>
+            <div class="card">Card 5</div>
+            <div class="card">Card 6</div>
+            <!-- 更多卡片 -->
         </div>
-        <div class="controls">
-            <h3>控制區域</h3>
-            <p>請修改以下 `d` 屬性來操控線條：</p>
-            <textarea id="pathInput">M50 50 L150 50 L150 150 L50 150 Z</textarea>
-            <button onclick="updatePath()">更新路徑</button>
-        </div>
+        <button class="arrow right">→</button>
     </div>
 
-    <script>
-        function updatePath() {
-            var input = document.getElementById("pathInput").value;
-            var path = document.getElementById("myPath");
-            path.setAttribute("d", input);
-        }
-    </script>
-
 </body>
+<script>
+    const cardWrapper = document.querySelector('.card-wrapper');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+
+    // 卡片寬度 + 間距（需與 CSS 的設定一致）
+    const cardWidth = 200 + 16;
+    const visibleCards = 4; // 一次顯示的卡片數量
+    let currentOffset = 0;
+
+    function updateArrows() {
+        // 計算最大偏移量
+        const maxOffset = -((cardWrapper.children.length - visibleCards) * cardWidth);
+
+        // 控制按鈕的啟用狀態
+        leftArrow.disabled = currentOffset === 0;
+        rightArrow.disabled = currentOffset === maxOffset;
+    }
+
+    function scroll(direction) {
+        const maxOffset = -((cardWrapper.children.length - visibleCards) * cardWidth);
+
+        if (direction === 'left' && currentOffset < 0) {
+            currentOffset += cardWidth;
+        } else if (direction === 'right' && currentOffset > maxOffset) {
+            currentOffset -= cardWidth;
+        }
+
+        cardWrapper.style.transform = `translateX(${currentOffset}px)`;
+        updateArrows();
+    }
+
+    // 初始化箭頭狀態
+    updateArrows();
+
+    // 綁定事件
+    leftArrow.addEventListener('click', () => scroll('left'));
+    rightArrow.addEventListener('click', () => scroll('right'));
+
+</script>
 
 </html>

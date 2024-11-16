@@ -1,6 +1,6 @@
 .container-program{
     margin: 0 auto;
-    width: 90%;
+    width: 60%;
     justify-content: center;
     padding: 20px 0;
     overflow-x: auto;
@@ -12,7 +12,10 @@
 .container-program::-webkit-scrollbar {
     display: none;
 }
-  
+  .cards{
+    display: flex;
+    justify-content: space-around;
+  }
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -22,7 +25,8 @@
   .card-list {
     display: flex;
     padding: 10px;
-    gap: 15px;
+    transition: transform 0.3s ease-in-out;
+    gap: 16px;
     width: max-content;
 }
   .card {
@@ -30,7 +34,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 250px;
+    width: 280px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -51,18 +55,22 @@
   
   }
   .card-title {
-    font-size: 1.25rem;
+    font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: #FFFFFF;
   }
   .card-content {
-    padding: 1.5rem;
+    padding: 1.3rem;
+    font-weight: 500;
     text-align: -webkit-center;
+    color: black;
+    
   }
   .card-description {
     margin-bottom: 1.5rem;
     text-align: justify;
+    font-size: 1.1rem;
   }
   
     /* 藍色系柔和漸層 */
@@ -96,6 +104,31 @@
   .orange .card-button {
       background: linear-gradient(to right, rgba(230, 126, 34, 0.9), rgba(211, 84, 0, 0.9));
   }
+  .program{
+    position: relative;
+  }
+
+  .leftbtn{
+    position: absolute;
+    top:50%;
+    left: 13%;
+    font-size: 3rem;
+    font-weight: 900;
+    background:#0a0a1a ;
+    border: #0a0a1a;
+    color:white;
+    cursor: pointer;
+  }
+  .rightbtn{
+    position: absolute;
+    top:50%;
+    right: 13%;
+    font-size: 3rem;
+    background:#0a0a1a ;
+    border: #0a0a1a;
+    color:white;
+  }
+
   
   .btn {
     display: inline-block;
@@ -106,7 +139,7 @@
     border: 2px solid;
     border-radius: 4px;
     color: goldenrod;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;

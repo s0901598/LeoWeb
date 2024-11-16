@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leo's Website - Final Improved Shutter Effect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/loading.css">
+    <link rel="stylesheet" href="./css/hud-panel.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/programcards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --secondary: #2a2a72;
+            --accent: #00f5ff;
+            --background: #0a0a1a;
+            --text: #ffffff;
+            --success: #4caf50;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .parallax-container {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            position: fixed;
+            top: 16%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 9998;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        /* 保留原有的基礎樣式 */
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="./js/loading.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <!-- New loading animation -->
+    <div class="loading-panel" id="loading-panel">
+        <div class="loader-container" id="loadingContainer">
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-inner"></div>
+            <div class="core"></div>
+            <div class="loading-text animate__animated animate__fadeIn">LOADING</div>
+        </div>
+    </div>
+
+    <div class="main" id="main">
+
+        <nav class="navbar">
+            <div class="logo">CrowdChain</div>
+            <div class="nav-links">
+                <a href="#explore">探索</a>
+                <a href="#start">發起專案</a>
+                <a href="#about">關於</a>
+                <a href="#connect">連接錢包</a>
+            </div>
+        </nav>
+        <div class="hud-container" id="mainContainer">
+            <div class="hud-panel">
+                <div class="sci-fi-animation">
+                    <div class="orbital-loader">
+                        <div class="orbital-circle"></div>
+                        <div class="orbital-circle"></div>
+                        <div class="orbital-circle"></div>
+                        <div class="orbital-core"></div>
+                    </div>
+                    <div class="data-stream"></div>
+                </div>
+                <div class="intro-text">
+                    <h1>嗨，我是Leo</h1>
+                    <p>軟體工程師 & 科技愛好者</p>
+                    <div class="tech-tags">
+                        <span>#人工智慧</span>
+                        <span>#網頁開發</span>
+                        <span>#資料科學</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="program" style="padding-top:50px;padding-bottom: 50px;">
+            <div class="container-program">
+                <button class="leftbtn"><i class="fa-solid fa-circle-left"></i></button>
+                <div class="cards flex justify-around">
+
+                    <div class="card-list">
+                        <div class="card blue">
+                            <div class="card-header img ">
+                                <img src="./assets/analytics.png" alt="後端技術" class="card-icon">
+                                <h2 class="card-title">後端技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">後端開發是網頁和應用程式的核心，負責處理伺服器端的邏輯、數據庫互動及API的設計與實現。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card green">
+                            <div class="card-header img ">
+                                <img src="./assets/alert.png" alt="前端技術" class="card-icon">
+                                <h2 class="card-title">前端技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">前端開發專注於用戶界面和體驗，使用HTML、CSS和JavaScript創建互動性強、視覺吸引人的網頁。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card purple">
+                            <div class="card-header img ">
+                                <img src="./assets/design-software.png" alt="網頁技術" class="card-icon">
+                                <h2 class="card-title">網頁技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">網頁技術開發包括了前後端結合，構建完整的網站還有Web應用，涵蓋從設計到部署的全過程。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card orange">
+                            <div class="card-header img ">
+                                <img src="./assets/responsive.png" alt="資料庫技術" class="card-icon">
+                                <h2 class="card-title">資料庫開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">資料庫開發專注於設計、實施及管理數據庫系統，確保數據的結構化存儲、快速檢索及安全性。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card blue">
+                            <div class="card-header img ">
+                                <img src="./assets/analytics.png" alt="後端技術" class="card-icon">
+                                <h2 class="card-title">後端技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">後端開發是網頁和應用程式的核心，負責處理伺服器端的邏輯、數據庫互動及API的設計與實現。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card green">
+                            <div class="card-header img ">
+                                <img src="./assets/alert.png" alt="前端技術" class="card-icon">
+                                <h2 class="card-title">前端技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">前端開發專注於用戶界面和體驗，使用HTML、CSS和JavaScript創建互動性強、視覺吸引人的網頁。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card purple">
+                            <div class="card-header img ">
+                                <img src="./assets/design-software.png" alt="網頁技術" class="card-icon">
+                                <h2 class="card-title">網頁技術開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">網頁技術開發包括了前後端結合，構建完整的網站還有Web應用，涵蓋從設計到部署的全過程。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                        <div class="card orange">
+                            <div class="card-header img ">
+                                <img src="./assets/responsive.png" alt="資料庫技術" class="card-icon">
+                                <h2 class="card-title">資料庫開發</h2>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description">資料庫開發專注於設計、實施及管理數據庫系統，確保數據的結構化存儲、快速檢索及安全性。</p>
+                                <div class="btn">聯繫我們 <span></span><span></span><span></span><span></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="rightbtn"><i class="fa-solid fa-circle-right"></i></button>
+
+            </div>
+        </section>
+
+
+    </div>
+
+    <script>
+        document.body.style.overflow = 'hidden'
+        // New loading and transition script
+        document.addEventListener('DOMContentLoaded', startLoading);
+
+        const cardWrapper = document.querySelector('.card-list');
+        const leftArrow = document.querySelector('.leftbtn');
+        const rightArrow = document.querySelector('.rightbtn');
+
+        // 卡片寬度 + 間距（需與 CSS 的設定一致）
+        const cardWidth = 350;
+        const visibleCards = 3; // 一次顯示的卡片數量
+        let currentOffset = 0;
+
+        function updateArrows() {
+            // 計算最大偏移量
+            const maxOffset = -((cardWrapper.children.length - visibleCards) * cardWidth);
+
+            // 控制按鈕的啟用狀態
+            leftArrow.disabled = currentOffset === 0;
+            rightArrow.disabled = currentOffset === maxOffset;
+        }
+
+        function scroll(direction) {
+            const maxOffset = -((cardWrapper.children.length - visibleCards) * cardWidth);
+
+            if (direction === 'leftbtn' && currentOffset < 0) {
+                currentOffset += cardWidth;
+            } else if (direction === 'rightbtn' && currentOffset > maxOffset) {
+                currentOffset -= cardWidth;
+            }
+
+            cardWrapper.style.transform = `translateX(${currentOffset}px)`;
+            updateArrows();
+        }
+
+        // 初始化箭頭狀態
+        updateArrows();
+
+        // 綁定事件
+        leftArrow.addEventListener('click', () => scroll('leftbtn'));
+        rightArrow.addEventListener('click', () => scroll('rightbtn'));
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web3.0 群眾募資平台</title>
+    <style>
+        /* 保留原有的基礎樣式 */
+        :root {
+            --primary: #6c63ff;
+            --secondary: #2a2a72;
+            --accent: #00f5ff;
+            --background: #0a0a1a;
+            --text: #ffffff;
+            --success: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navbar 樣式保持不變 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* 新增募資項目卡片樣式 */
+        .projects-section {
+            padding: 6rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 6px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 1s ease-in-out;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .time-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 標籤樣式 */
+        .tag {
+            background: rgba(108, 99, 255, 0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        /* 動畫效果 */
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: var(--accent);
+            color: var(--background);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">CrowdChain</div>
+        <div class="nav-links">
+            <a href="#explore">探索</a>
+            <a href="#start">發起專案</a>
+            <a href="#about">關於</a>
+            <a href="#connect">連接錢包</a>
+        </div>
+    </nav>
+
+    <section class="projects-section">
+        <h2 class="section-title">熱門募資項目</h2>
+
+        <div class="filter-section">
+            <button class="filter-button active">所有項目</button>
+            <button class="filter-button">科技</button>
+            <button class="filter-button">藝術</button>
+            <button class="filter-button">遊戲</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- 項目卡片 1 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/api/placeholder/400/320')"></div>
+                <div class="project-content">
+                    <div class="tag">科技創新</div>
+                    <h3 class="project-title">AI 智慧眼鏡</h3>
+                    <p class="project-description">結合 AR 技術的智慧型眼鏡，為您帶來全新的視覺體驗。</p>
+                    <div class="project-stats">
+                        <span>已募得 NT$2,500,000</span>
+                        <span>目標 NT$3,000,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 83%"></div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="time-left">
+                            <span>剩餘 15 天</span>
+                        </div>
+                        <span>1,234 位贊助者</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 項目卡片 2 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/api/placeholder/400/320')"></div>
+                <div class="project-content">
+                    <div class="tag">遊戲</div>
+                    <h3 class="project-title">區塊鏈RPG遊戲</h3>
+                    <p class="project-description">結合NFT的開放世界RPG遊戲，打造專屬的虛擬世界。</p>
+                    <div class="project-stats">
+                        <span>已募得 NT$1,800,000</span>
+                        <span>目標 NT$2,500,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 72%"></div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="time-left">
+                            <span>剩餘 7 天</span>
+                        </div>
+                        <span>856 位贊助者</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 項目卡片 3 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/api/placeholder/400/320')"></div>
+                <div class="project-content">
+                    <div class="tag">藝術</div>
+                    <h3 class="project-title">數位藝術展覽</h3>
+                    <p class="project-description">虛擬實境藝術展覽，打破傳統展覽的界限。</p>
+                    <div class="project-stats">
+                        <span>已募得 NT$500,000</span>
+                        <span>目標 NT$800,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 62%"></div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="time-left">
+                            <span>剩餘 21 天</span>
+                        </div>
+                        <span>325 位贊助者</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 為項目卡片添加動畫效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.project-card');
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animation = 'slideIn 0.6s ease-out forwards';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            cards.forEach((card) => {
+                observer.observe(card);
+                card.style.opacity = 0;
+            });
+
+            // 分類按鈕互動
+            const filterButtons = document.querySelectorAll('.filter-button');
+            filterButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach((btn) => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

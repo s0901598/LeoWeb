@@ -1,0 +1,207 @@
+/* New styles for loading animation */
+.loader-container {
+    position: relative;
+    width: 240px;
+    /* Reduced by 20% from 300px */
+    height: 240px;
+    /* Reduced by 20% from 300px */
+    z-index: 9999;
+
+
+
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: spin 2.5s linear infinite;
+    /* Faster spin */
+}
+
+.ring-outer {
+    width: 240px;
+    /* Reduced by 20% */
+    height: 240px;
+    /* Reduced by 20% */
+    border-top: 2px solid #4d79ff;
+    border-right: 2px solid #4d79ff;
+    filter: drop-shadow(0 0 5px #4d79ff);
+
+}
+
+.ring-inner {
+    width: 192px;
+    /* Reduced by 20% */
+    height: 192px;
+    /* Reduced by 20% */
+    border-top: 2px solid #ff4d94;
+    border-left: 2px solid #ff4d94;
+    top: 24px;
+    /* Adjusted */
+    left: 24px;
+    /* Adjusted */
+    animation-direction: reverse;
+    filter: drop-shadow(0 0 5px #ff4d94);
+}
+
+.core {
+    position: absolute;
+    width: 144px;
+    /* Reduced by 20% */
+    height: 144px;
+    /* Reduced by 20% */
+    top: 48px;
+    /* Adjusted */
+    left: 48px;
+    /* Adjusted */
+    background: radial-gradient(circle, rgba(77, 121, 255, 0.3) 0%, rgba(255, 77, 148, 0.3) 100%);
+    border-radius: 50%;
+    animation: pulse 2.2s ease-in-out infinite;
+    /* Faster pulse */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    animation: twinkle 1s infinite;
+    /* Slightly faster twinkle */
+}
+
+.planet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: orbit 5s linear infinite;
+}
+
+.loading-text {
+    position: absolute;
+    bottom: -48px;
+    /* Adjusted */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    /* Slightly smaller */
+    font-weight: bold;
+    letter-spacing: 4px;
+    background: linear-gradient(to right, #4d79ff, #ff4d94);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.loading-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.animate__animated.animate__fadeIn {
+    --animate-duration: 2s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(80px) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(80px) rotate(-360deg);
+    }
+}
+
+.zoom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a2e;
+    z-index: 9998;
+    transform: scale(1);
+    transition: transform 5s ease-in-out;
+}
+
+.zoom-overlay.zoom-out {
+    transform: scale(20);
+    opacity: 0;
+}
+
+.animate__animated.animate__fadeIn {
+    --animate-duration: 2s;
+}
+
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.mainContainer,
+.loader-container {
+    transition: opacity 1s ease-in-out;
+}
+
+.parallax-container {
+    opacity: 0;
+}

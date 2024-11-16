@@ -161,12 +161,65 @@
                                 stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6"
                                 pointer-events="stroke" />
                         </g>
+                    </g>
+
+                    <!--nginx-outer-box-line-->
+                    <g transform="translate(0,-121)">
+                        <path id="nignx-outer-line1" d="M 610 265 L 610 165" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="stroke" />
+                        <path id="nignx-outer-line2" d="M 1090 165 L 610 165" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="stroke" />
+                        <path id="nignx-outer-line3" d="M 1090 435 L 1090 165" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="stroke" />
+                        <path id="nignx-outer-line4" d="M 610 435 L 1090 435" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="stroke" />
+                        <path id="nignx-outer-line5" d="M 610 435 L 610 335" fill="none" stroke="rgb(0, 0, 0)"
+                            stroke-width="2" stroke-miterlimit="10" stroke-dasharray="2 6" pointer-events="stroke" />
+                        <g transform="translate(-50,0)">
+                            <path id="nginx-auto-arrow"
+                                d="M 970 295 L 995.8 265 L 995.8 286 L 1073.2 286 L 1073.2 265 L 1099 295 L 1073.2 325 L 1073.2 304 L 995.8 304 L 995.8 325 Z"
+                                fill="#ffe6cc" stroke="#d79b00" stroke-miterlimit="10" transform="rotate(90,1034.5,295)"
+                                pointer-events="all" />
+                        </g>
+                        <g transform="translate(398,215)" id="auto-scaling" opacity="0">
+                            <rect x="539" y="150" width="100" height="60" fill="none" />
+                            <text x="590" y="185" text-anchor="middle" fill="black" opacity="0">Auto-Scaling</text>
+                        </g>
+                        <!--web server area-->
+                        <g id="web-server" opacity="0">
+                            <rect x="660" y="185" width="100" height="20" fill="#f8cecc" stroke="#b85450"
+                                pointer-events="all" />
+                            <text x="710" y="200" text-anchor="middle" fill="black" opacity="0">Web Server</text>
+                        </g>
+                        <path id="micro-server-line" d="M 710 165 L 693.68 132.37 
+                            L 698.16 132.37 L 691 127 
+                            L 691 135.94 L 693.68 132.37 Z" fill="#c73500" stroke="#c73500" stroke-width="2"
+                            stroke-miterlimit="10" pointer-events="all" />
+
+                        <g id="micro-service" opacity="0">
+                            <rect x="610" y="85" width="120" height="30" fill="#fa6800" stroke="#c73500"
+                                pointer-events="all" />
+                            <text x="670" y="105" text-anchor="middle" fill="white" opacity="0">Micro Service</text>
+                        </g>
+                        <path id="file-server-line" d="M 880 165 L 879.58 123.24 
+                           L 875.6 125.28 L 879.52 117.24 
+                           L 883.6 125.2 L 879.58 123.24 Z" fill="#4d9900" stroke="#4d9900" stroke-width="2"
+                            stroke-miterlimit="10" pointer-events="all" />
+                        <g id="file-service" opacity="0">
+                            <rect x="830" y="75" width="100" height="30" fill="#d5e8d4" stroke="#82b366"
+                                pointer-events="all" />
+                            <text x="670" y="105" text-anchor="middle" fill="white" opacity="0">Micro Service</text>
+
+                        </g>
+
 
 
 
 
 
                     </g>
+
+
                 </g>
             </g>
         </svg>
@@ -193,7 +246,18 @@
             'nginx-line-server2',
             'server2',
             'nginx-line-server3',
-            'server3'
+            'server3',
+            'nignx-outer-line1',
+            'nignx-outer-line2',
+            'nignx-outer-line3',
+            'nignx-outer-line4',
+            'nignx-outer-line5',
+            'nginx-auto-arrow',
+            'auto-scaling',
+            'web-server',
+            'micro-server-line',
+            'micro-service',
+            'file-server-line'
 
         ];
         dashlines = ['nginx-line-server1', 'nginx-line-server2', 'nginx-line-server3']
